@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
 <body>
-    <h1>Hello</h1>
-    <h1>{{ author }}</h1>
-    <h2>{{ title }}</h2>
-    <p>{{ content }}</p>
-    <a href="articles/add/">Create article</a>
+    {% for article in articles %}
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.content }}</p>
+        <p><a href="#">Подробнее</a></p>
+    {% endfor %}
+    <a href="articles/add/">Create new article</a>
 </body>
 </html>

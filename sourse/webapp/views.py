@@ -1,9 +1,10 @@
 from django.shortcuts import render
-
+from webapp.models import Article
 
 # Create your views here.
 def index_view(request):
-    return render(request, 'index.html')
+    articles = Article.objects.order_by("updated_at")
+    return render(request, 'index.html',{'articles': articles})
 
 def create_articles_view(request):
     if request.method == "GET":
