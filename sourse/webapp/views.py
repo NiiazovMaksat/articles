@@ -17,3 +17,9 @@ def create_article_view(request):
         context = {"article": new_article }
 
         return render(request, "article_view.html", context)
+
+def article_view(request):
+    pk= request.GET.get("pk")
+    article = Article.objects.get(pk=pk)
+    context = {"article": article}
+    return render(request, "article_view.html", context)
