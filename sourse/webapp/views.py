@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from webapp.models import Article
 
 # Create your views here.
@@ -16,10 +17,9 @@ def create_article_view(request):
         author = request.POST.get('author')
         new_article = Article.objects.create(title=title, content=content, author=author)
 
-        return HttpResponseRedirect(f"/article/{new_article.pk}")
-
+        return redirect('article_view', pk=new_article.pk)
 def article_view(request, pk):
-    #pk = request.GET.get("pk")
+
     article = Article.objects.get(pk=pk)
     context = {"article": article}
     return render(request, "article_view.html", context)
